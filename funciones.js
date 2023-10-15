@@ -10,7 +10,7 @@ let restar=(a,b)=>{
     return resultado;;
 }
 
-console.log(restar(5,4));   
+console.log(restar(10,4));   
 
 let welcome=(name,lastname)=>{
     let fullname=`${name} ${lastname}`;
