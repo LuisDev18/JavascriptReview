@@ -11,3 +11,8 @@ let restar=(a,b)=>{
 }
 
 console.log(restar(5,4));   
+
+let welcome=(name,lastname)=>{
+    let fullname=`${name} ${lastname}`;
+    return fullname;
+}
