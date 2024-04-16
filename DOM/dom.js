@@ -109,3 +109,72 @@ $figure2.innerHTML=`
 
 $figure2.classList.add("card");
 $cards.appendChild($figure2);
+//DOM-Template
+$template = document.getElementById("template-card").content;
+$fragment = document.createDocumentFragment();
+cardContent = [
+    {
+        title: "Adidas",
+        img: "galaxy.jpeg"
+    },
+    {
+        title: "Reebok",
+        img: "galaxy.jpeg"
+    },
+    {
+        title: "Puma",
+        img: "galaxy.jpeg"
+    },
+
+]
+
+cardContent.forEach(el =>{
+    $template.querySelector("img").setAttribute("src",el.img);
+    $template.querySelector("img").setAttribute("alt",el.title);
+    $template.querySelector("figcaption").textContent = el.title;
+
+    let $clone = document.importNode($template,true);
+    $fragment.appendChild($clone);
+})
+
+
+$cards.appendChild($fragment);
+//Modificando Elementos del DOM(Old Style)
+$newCard = document.createElement("figure");
+
+$newCard.innerHTML = `
+<img src="paneton.jpeg" alt="tech">
+<figcaption>Donofrio</figcaption>
+`
+
+$newCard.classList.add("card");//agrega un estilo .card a un elemento html
+
+//$cards.replaceChild($newCard,$cards.children[2])
+$cards.removeChild($cards.lastElementChild);
+
+
+//Manejador de Eventos:
+//La funcion que se convetira en un event handler
+function holaMundo(){
+    alert("Hola Mundo");
+    console.log(event);
+}
+
+//Evento Semantico: El problema es que este ejecuta una sola funcion
+const $eventoSemantico = document.getElementById("evento-semantico");
+$eventoSemantico.onclick = holaMundo;//Llamamos a la funcion holaMundo() pero no usamos ()
+
+$eventoSemantico.onclick = function (e){
+    alert("Hola mundo by manejador de evento semantico");
+    console.log(e);
+}
+
+//Evento Multiple: uso del addEventListener
+$eventoMultiple = document.getElementById("evento-multiple");
+$eventoMultiple.addEventListener("click",holaMundo)
+$eventoMultiple.addEventListener("click",(e)=>{
+  alert("Hola Mundo soy un Manejador de Eventos Multiples");
+  console.log(e);
+  console.log(e.type);
+  console.log(e.target);
+})
